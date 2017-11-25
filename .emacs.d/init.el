@@ -40,15 +40,14 @@
 
 ; Use RTAGS to create a symbol database
 ; This DB is used to jump-to definitions and find symbols and references
-(load "/home/vbhatawadekar/code/rtags/src/rtags")
+(load "~/code/rtags/src/rtags")
 ; C-c r .  is used to jump tp definition/declaration
 ; see ~/code/rtags/src/rtags.el for list of keybindings
 (rtags-enable-standard-keybindings)
 
 ; irony-mode for completion in C and C++
 (add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-; (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 ; TAB-complete symbols and functions
 (c++-mode)
@@ -99,6 +98,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
     (projectile ws-butler volatile-highlights use-package undo-tree sr-speedbar rtags json-mode irony-eldoc iedit helm-swoop helm-projectile helm-gtags function-args flymake-cursor flycheck-irony find-file-in-repository dtrt-indent dirtree-prosjekt counsel company color-theme codesearch cmake-mode cmake-ide clean-aindent-mode anzu))))
