@@ -114,3 +114,16 @@
 
 ; Always highlight matching parentheses
 (show-paren-mode 1)
+
+; Make the current window dedicated
+(defun toggle-sticky-buffer-window ()
+  "Toggle whether this window is dedicated to this buffer."
+  (interactive)
+  (set-window-dedicated-p
+   (selected-window)
+   (not (window-dedicated-p (selected-window))))
+  (if (window-dedicated-p (selected-window))
+      (message "Window is now dedicated.")
+    (message "Window is no longer dedicated.")))
+
+(global-set-key [(super d)] 'toggle-sticky-buffer-window)
