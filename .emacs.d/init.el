@@ -127,3 +127,7 @@
     (message "Window is no longer dedicated.")))
 
 (global-set-key [(super d)] 'toggle-sticky-buffer-window)
+(set-default-font "Courier 10 Pitch")
+
+;; Scrolling compilation buffer
+(setq compilation-scroll-output t)
