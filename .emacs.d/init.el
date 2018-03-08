@@ -40,9 +40,9 @@
 
 ; Use RTAGS to create a symbol database
 ; This DB is used to jump-to definitions and find symbols and references
-(load "~/code/rtags/src/rtags")
+(load "rtags")
 ; C-c r .  is used to jump tp definition/declaration
-; see ~/code/rtags/src/rtags.el for list of keybindings
+; see rtags.el for list of keybindings
 (rtags-enable-standard-keybindings)
 
 ; irony-mode for completion in C and C++
@@ -52,6 +52,9 @@
 ; TAB-complete symbols and functions
 (c++-mode)
 (define-key c++-mode-map  [(C-tab)] 'completion-at-point)
+
+; Default mode for .h files is c++ since mostly I am writing c++
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ; helm
 ; (require 'setup-helm-gtags)
@@ -73,17 +76,18 @@
 ; ToDo - add command to regenerate etags
 (global-set-key (kbd "C-,") 'xref-find-definitions)
 
-; General Text Search with regex filters
-(global-set-key (kbd "C-c C-,") 'projectile-grep)
-
 ; Jump to function inside file with Helm Imenu
 (global-set-key (kbd "C-c j") 'helm-imenu)
 
 ; Switch between .cpp and .h files of the same base name
 (global-set-key (kbd "C-c C-f o") 'projectile-find-other-file)
 
+; Save all open buffers
 (defun save-all () (interactive) (save-some-buffers t))
 (global-set-key (kbd "C-c s") 'save-all)
+
+; Grep
+(global-set-key (kbd "C-c g") 'projectile-grep)
 
 ; Save all open files and Compile, same as F5 in visual studio
 (defun save-all-and-recompile () (interactive)
@@ -92,6 +96,7 @@
 
 (global-set-key [f5] 'save-all-and-recompile)
 (global-set-key [f9] 'compile)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -114,6 +119,10 @@
 
 ; Always highlight matching parentheses
 (show-paren-mode 1)
+
+;; Enable WS butler
+(ws-butler-mode 1)
+
 
 ; Make the current window dedicated
 (defun toggle-sticky-buffer-window ()
