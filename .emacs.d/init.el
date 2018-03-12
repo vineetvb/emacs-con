@@ -71,6 +71,7 @@
 ; Find any file in repo
 ; (global-set-key (kbd "C-x f") 'projectile-find-file)
 
+
 ; General Identifier Search, search across classes, functions etc
 ; This search is enabled by etags
 ; ToDo - add command to regenerate etags
@@ -106,7 +107,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (projectile ws-butler volatile-highlights use-package undo-tree sr-speedbar rtags json-mode irony-eldoc iedit helm-swoop helm-projectile helm-gtags function-args flymake-cursor flycheck-irony find-file-in-repository dtrt-indent dirtree-prosjekt counsel company color-theme codesearch cmake-mode cmake-ide clean-aindent-mode anzu))))
+    (exwm projectile ws-butler volatile-highlights use-package undo-tree sr-speedbar rtags json-mode irony-eldoc iedit helm-swoop helm-projectile helm-gtags function-args flymake-cursor flycheck-irony find-file-in-repository dtrt-indent dirtree-prosjekt counsel company color-theme codesearch cmake-mode cmake-ide clean-aindent-mode anzu))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -122,7 +123,6 @@
 
 ;; Enable WS butler
 (ws-butler-mode 1)
-
 
 ; Make the current window dedicated
 (defun toggle-sticky-buffer-window ()
@@ -140,3 +140,28 @@
 
 ;; Scrolling compilation buffer
 (setq compilation-scroll-output t)
+
+; Emacs Window Manager - Base Config
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+;; Shrink fringes to 1 pixel
+(fringe-mode 1)
+
+;; You may want Emacs to show you the time
+(setq display-time-default-load-average nil)
+(display-time-mode t)
+
+;; You are strongly encouraged to enable `ido-mode' (or something similar) to
+;; alter to default behavior of 'C-x b', or you will take great pains to switch
+;; to or back from a floating frame (remember 'C-x 5 o' if you refuse this
+;; proposal however)
+;; You may also want to call `exwm-enable-ido-workaround' later (see below)
+;; (ido-mode 1)
+
+; (require 'exwm)
+; (require 'exwm-config)
+; (exwm-config-default)
+
+ (add-hook 'before-save-hook 'delete-trailing-whitespace)
